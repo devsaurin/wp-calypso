@@ -181,7 +181,7 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 				blockClass = 'dynamic-separator';
 				break;
 		}
-		const inserterToggleSelector = By.css( '.edit-post-header .editor-inserter__toggle' );
+		const inserterToggleSelector = By.css( '.edit-post-header .block-editor-inserter__toggle' );
 		const inserterMenuSelector = By.css( '.block-editor-inserter__menu' );
 		const inserterSearchInputSelector = By.css( 'input.block-editor-inserter__search' );
 		const inserterBlockItemSelector = By.css(
