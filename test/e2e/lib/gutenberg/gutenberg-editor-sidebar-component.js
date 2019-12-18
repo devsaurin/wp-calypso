@@ -34,7 +34,7 @@ export default class GutenbergEditorSidebarComponent extends AsyncBaseContainer 
 	}
 
 	async expandStatusAndVisibility() {
-		return await this._expandOrCollapseSectionByText( 'Status & Visibility', true );
+		return await this._expandOrCollapseSectionByText( 'Status & visibility', true );
 	}
 
 	async expandPermalink() {
@@ -62,7 +62,7 @@ export default class GutenbergEditorSidebarComponent extends AsyncBaseContainer 
 	}
 
 	async collapseStatusAndVisibility() {
-		return await this._expandOrCollapseSectionByText( 'Status & Visibility', false );
+		return await this._expandOrCollapseSectionByText( 'Status & visibility', false );
 	}
 
 	async collapsePermalink() {
