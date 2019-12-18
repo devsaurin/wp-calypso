@@ -168,22 +168,15 @@ export default class GutenbergEditorSidebarComponent extends AsyncBaseContainer 
 
 	async displayComponentIfNecessary() {
 		if ( driverManager.currentScreenSize() === 'mobile' ) {
-			const driver = this.driver;
-			const c = await driver.findElement( this.cogSelector ).getAttribute( 'class' );
-			if ( c.indexOf( 'is-toggled' ) < 0 ) {
-				return await driverHelper.clickWhenClickable( driver, this.cogSelector );
-			}
+			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
+			return await gEditorComponent.openSidebar();
 		}
 	}
 
 	async hideComponentIfNecessary() {
 		if ( driverManager.currentScreenSize() === 'mobile' ) {
-			const driver = this.driver;
-
-			const c = await driver.findElement( this.cogSelector ).getAttribute( 'class' );
-			if ( c.indexOf( 'is-toggled' ) > -1 ) {
-				return await driverHelper.clickWhenClickable( driver, this.closeSelector );
-			}
+			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
+			return await gEditorComponent.closeSidebar();
 		}
 	}
 
