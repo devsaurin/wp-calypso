@@ -15,8 +15,6 @@ import GutenbergEditorComponent from './gutenberg-editor-component';
 export default class GutenbergEditorSidebarComponent extends AsyncBaseContainer {
 	constructor( driver ) {
 		super( driver, By.css( '.edit-post-header' ) );
-		this.cogSelector = By.css( '[aria-label="Settings"]:not([disabled])' );
-		this.closeSelector = By.css( '[aria-label="Close settings"]:not([disabled])' );
 	}
 
 	async selectTab( name ) {
