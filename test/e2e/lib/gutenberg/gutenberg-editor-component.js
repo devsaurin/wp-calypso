@@ -95,7 +95,7 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 	}
 
 	async enterText( text ) {
-		const appenderSelector = By.css( '.editor-default-block-appender' );
+		const appenderSelector = By.css( '.block-editor-default-block-appender' );
 		const textSelector = By.css( '.wp-block-paragraph' );
 		await driverHelper.clickWhenClickable( this.driver, appenderSelector );
 		await driverHelper.waitTillPresentAndDisplayed( this.driver, textSelector );
@@ -182,10 +182,10 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 				break;
 		}
 		const inserterToggleSelector = By.css( '.edit-post-header .editor-inserter__toggle' );
-		const inserterMenuSelector = By.css( '.editor-inserter__menu' );
-		const inserterSearchInputSelector = By.css( 'input.editor-inserter__search' );
+		const inserterMenuSelector = By.css( '.block-editor-inserter__menu' );
+		const inserterSearchInputSelector = By.css( 'input.block-editor-inserter__search' );
 		const inserterBlockItemSelector = By.css(
-			`li.editor-block-types-list__list-item button.editor-block-list-item-${ prefix }${ blockClass
+			`li.block-editor-block-types-list__list-item button.block-editor-block-list-item-${ prefix }${ blockClass
 				.replace( /\s+/g, '-' )
 				.toLowerCase() }`
 		);
