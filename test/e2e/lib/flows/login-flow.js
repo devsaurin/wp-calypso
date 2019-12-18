@@ -153,12 +153,6 @@ export default class LoginFlow {
 		const pagesPage = await PagesPage.Expect( this.driver );
 		await pagesPage.selectAddNewPage();
 
-		if ( usingGutenberg ) {
-			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
-			await gEditorComponent.dismissPageTemplateSelector();
-			await gEditorComponent.closeSidebar();
-		}
-
 		if ( ! usingGutenberg ) {
 			this.editorPage = await EditorPage.Expect( this.driver );
 

@@ -36,7 +36,9 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 	}
 
 	async _postInit() {
-		await this.removeNUXNotice();
+		await this.dismissPageTemplateSelector();
+		await this.dismissWelcomeGuide();
+		await this.closeSidebar();
 	}
 
 	async _preInit() {
@@ -128,27 +130,6 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 	async errorDisplayed() {
 		await this.driver.sleep( 1000 );
 		return await driverHelper.isElementPresent( this.driver, By.css( '.editor-error-boundary' ) );
-	}
-
-	async removeNUXNotice() {
-		const nuxPopupSelector = By.css( '.nux-dot-tip' );
-		const nuxDisableSelector = By.css( '.nux-dot-tip__disable' );
-
-		if ( await driverHelper.isElementPresent( this.driver, nuxPopupSelector ) ) {
-			await driverHelper.clickWhenClickable( this.driver, nuxDisableSelector );
-			try {
-				await driverHelper.waitTillNotPresent(
-					this.driver,
-					nuxPopupSelector,
-					this.explicitWaitMS / 2
-				);
-			} catch {
-				if ( driverManager.currentScreenSize() === 'mobile' ) {
-					await this.closeSidebar();
-				}
-				await driverHelper.clickWhenClickable( this.driver, nuxDisableSelector );
-			}
-		}
 	}
 
 	// return blockID - top level block id which is looks like `block-b91ce479-fb2d-45b7-ad92-22ae7a58cf04`. Should be used for further interaction with added block.
