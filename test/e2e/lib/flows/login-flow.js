@@ -124,8 +124,7 @@ export default class LoginFlow {
 
 		if ( usingGutenberg ) {
 			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
-			await gEditorComponent.dismissWelcomeGuide();
-			await gEditorComponent.closeSidebar();
+			await gEditorComponent.initEditor();
 		}
 
 		if ( ! usingGutenberg ) {
@@ -155,9 +154,7 @@ export default class LoginFlow {
 
 		if ( usingGutenberg ) {
 			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
-			await gEditorComponent.dismissPageTemplateSelector();
-			await gEditorComponent.dismissWelcomeGuide();
-			await gEditorComponent.closeSidebar();
+			await gEditorComponent.initEditor( 'page' );
 		}
 
 		if ( ! usingGutenberg ) {

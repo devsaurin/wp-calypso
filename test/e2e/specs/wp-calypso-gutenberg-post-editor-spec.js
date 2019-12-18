@@ -264,8 +264,7 @@ describe( `[${ host }] Calypso Gutenberg Editor: Posts (${ screenSize })`, funct
 
 			step( 'Can enter post title and text content', async function() {
 				const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
-				await gEditorComponent.dismissEditorWelcomeModal();
-				await gEditorComponent.closeSidebar();
+				await gEditorComponent.initEditor();
 				await gEditorComponent.enterTitle( blogPostTitle );
 				await gEditorComponent.enterText( blogPostQuote );
 
@@ -1204,8 +1203,7 @@ describe( `[${ host }] Calypso Gutenberg Editor: Posts (${ screenSize })`, funct
 
 		step( 'Block Editor loads with shared content', async function() {
 			const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
-			await gEditorComponent.dismissEditorWelcomeModal();
-			await gEditorComponent.closeSidebar();
+			await gEditorComponent.initEditor();
 		} );
 
 		step( 'Can publish and view content', async function() {

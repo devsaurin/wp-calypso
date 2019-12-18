@@ -48,6 +48,14 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 		await this.driver.sleep( 2000 );
 	}
 
+	async initEditor( postType = 'post' ) {
+		if ( postType === 'page' ) {
+			this.dismissPageTemplateSelector();
+		}
+		this.dismissWelcomeGuide();
+		this.closeSidebar();
+	}
+
 	async publish( { visit = false } = {} ) {
 		const snackBarNoticeLinkSelector = By.css( '.components-snackbar__content a' );
 		await driverHelper.clickWhenClickable( this.driver, this.prePublishButtonSelector );
@@ -355,7 +363,6 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 					By.css( '.template-selector-item__template-title' ),
 					'Blank'
 				);
-				await this.closeSidebar();
 			} else {
 				await driverHelper.clickWhenClickable(
 					this.driver,
