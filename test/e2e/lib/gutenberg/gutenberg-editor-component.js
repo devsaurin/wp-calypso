@@ -35,12 +35,6 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 		return page;
 	}
 
-	async _postInit() {
-		await this.dismissPageTemplateSelector();
-		await this.dismissWelcomeGuide();
-		await this.closeSidebar();
-	}
-
 	async _preInit() {
 		if ( this.editorType !== 'iframe' ) {
 			return;

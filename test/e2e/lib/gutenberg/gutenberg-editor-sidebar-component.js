@@ -112,7 +112,7 @@ export default class GutenbergEditorSidebarComponent extends AsyncBaseContainer 
 		const labelSelector = await driverHelper.getElementByText(
 			this.driver,
 			By.css( '.components-checkbox-control__label' ),
-			'Allow Comments'
+			'Allow comments'
 		);
 		const checkBoxSelectorID = await this.driver.findElement( labelSelector ).getAttribute( 'for' );
 		const checkBoxSelector = By.id( checkBoxSelectorID );
