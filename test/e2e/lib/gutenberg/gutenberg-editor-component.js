@@ -185,7 +185,7 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 		const inserterMenuSelector = By.css( '.block-editor-inserter__menu' );
 		const inserterSearchInputSelector = By.css( 'input.block-editor-inserter__search' );
 		const inserterBlockItemSelector = By.css(
-			`li.block-editor-block-types-list__list-item button.block-editor-block-list-item-${ prefix }${ blockClass
+			`li.block-editor-block-types-list__list-item button.editor-block-list-item-${ prefix }${ blockClass
 				.replace( /\s+/g, '-' )
 				.toLowerCase() }`
 		);
