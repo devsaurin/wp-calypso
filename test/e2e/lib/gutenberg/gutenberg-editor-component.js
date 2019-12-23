@@ -52,7 +52,7 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 		if ( postType === 'page' ) {
 			this.dismissPageTemplateSelector();
 		}
-		this.dismissWelcomeGuide();
+		this.dismissEditorWelcomeModal();
 		this.closeSidebar();
 	}
 
