@@ -58,6 +58,7 @@ import SignUpStep from '../lib/flows/sign-up-step';
 import * as sharedSteps from '../lib/shared-steps/wp-signup-spec';
 import AccountSettingsPage from '../lib/pages/account/account-settings-page';
 import ChecklistPage from '../lib/pages/checklist-page';
+import GutenbergEditorComponent from '../lib/gutenberg/gutenberg-editor-component';
 
 const mochaTimeOut = config.get( 'mochaTimeoutMS' );
 const startBrowserTimeoutMS = config.get( 'startBrowserTimeoutMS' );
@@ -1211,6 +1212,27 @@ describe( `[${ host }] Sign Up  (${ screenSize }, ${ locale })`, function() {
 		);
 
 		sharedSteps.canSeeTheOnboardingChecklist();
+
+		step( 'Can update the homepage', async function() {
+			const checklistPage = await ChecklistPage.Expect( this.driver );
+			await checklistPage.updateHomepage();
+
+			const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
+
+			const errorShown = await gEditorComponent.errorDisplayed();
+			assert.strictEqual(
+				errorShown,
+				false,
+				'There is an error on when editing the homepage with Gutenberg'
+			);
+
+			const hasInvalidBlocks = await gEditorComponent.hasInvalidBlocks();
+			return assert.strictEqual(
+				hasInvalidBlocks,
+				false,
+				'There are invalid blocks when editing the homepage'
+			);
+		} );
 
 		after( 'Can delete our newly created account', async function() {
 			return await new DeleteAccountFlow( driver ).deleteAccount( blogName );

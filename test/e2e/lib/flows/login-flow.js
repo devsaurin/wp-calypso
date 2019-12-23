@@ -138,7 +138,7 @@ export default class LoginFlow {
 	async loginAndStartNewPage(
 		site = null,
 		usingGutenberg = false,
-		{ useFreshLogin = false } = {}
+		{ useFreshLogin = false, dismissPageTemplateSelector = true } = {}
 	) {
 		if ( site || ( host !== 'WPCOM' && this.account.legacyAccountName !== 'jetpackConnectUser' ) ) {
 			site = site || dataHelper.getJetpackSiteName();
@@ -154,7 +154,7 @@ export default class LoginFlow {
 
 		if ( usingGutenberg ) {
 			const gEditorComponent = await GutenbergEditorComponent.Expect( this.driver );
-			await gEditorComponent.initEditor( 'page' );
+			await gEditorComponent.initEditor( { dismissPageTemplateSelector } );
 		}
 
 		if ( ! usingGutenberg ) {

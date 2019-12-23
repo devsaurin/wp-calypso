@@ -48,8 +48,8 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 		await this.driver.sleep( 2000 );
 	}
 
-	async initEditor( postType = 'post' ) {
-		if ( postType === 'page' ) {
+	async initEditor( { dismissPageTemplateSelector = true } = {} ) {
+		if ( dismissPageTemplateSelector ) {
 			this.dismissPageTemplateSelector();
 		}
 		this.dismissEditorWelcomeModal();
@@ -131,6 +131,10 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 
 	async errorDisplayed() {
 		await this.driver.sleep( 1000 );
+		return await driverHelper.isElementPresent( this.driver, By.css( '.editor-error-boundary' ) );
+	}
+
+	async hasInvalidBlocks() {
 		return await driverHelper.isElementPresent( this.driver, By.css( '.editor-error-boundary' ) );
 	}
 
