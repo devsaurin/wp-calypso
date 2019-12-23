@@ -135,7 +135,7 @@ export default class GutenbergEditorComponent extends AsyncBaseContainer {
 	}
 
 	async hasInvalidBlocks() {
-		return await driverHelper.isElementPresent( this.driver, By.css( '.editor-error-boundary' ) );
+		return await driverHelper.isElementPresent( this.driver, By.css( '.block-editor-warning' ) );
 	}
 
 	// return blockID - top level block id which is looks like `block-b91ce479-fb2d-45b7-ad92-22ae7a58cf04`. Should be used for further interaction with added block.
