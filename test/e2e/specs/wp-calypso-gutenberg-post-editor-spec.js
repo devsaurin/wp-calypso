@@ -242,7 +242,7 @@ describe( `[${ host }] Calypso Gutenberg Editor: Posts (${ screenSize })`, funct
 		} );
 	} );
 
-	describe( 'Basic Public Post @canary @parallel', function() {
+	describe( 'Basic Public Post @canary @ie11canary @parallel', function() {
 		describe( 'Publish a New Post', function() {
 			const blogPostTitle = dataHelper.randomPhrase();
 			const blogPostQuote =
@@ -274,6 +274,12 @@ describe( `[${ host }] Calypso Gutenberg Editor: Posts (${ screenSize })`, funct
 					false,
 					'There is an error shown on the Gutenberg editor page!'
 				);
+			} );
+
+			step( 'Can see the Jetpack blocks', async function() {
+				const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
+				await gEditorComponent.isBlockCategoryPresent( 'jetpack' );
+				await gEditorComponent.closeBlockInserter();
 			} );
 
 			step( 'Can publish and view content', async function() {

@@ -515,6 +515,26 @@ describe( `[${ host }] Sign Up  (${ screenSize }, ${ locale })`, function() {
 
 		sharedSteps.canSeeTheOnboardingChecklist();
 
+		step( 'Can update the homepage', async function() {
+			const checklistPage = await ChecklistPage.Expect( this.driver );
+			await checklistPage.updateHomepage();
+			const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
+
+			const errorShown = await gEditorComponent.errorDisplayed();
+			assert.strictEqual(
+				errorShown,
+				false,
+				'There is a block editor error when editing the homepage'
+			);
+
+			const hasInvalidBlocks = await gEditorComponent.hasInvalidBlocks();
+			return assert.strictEqual(
+				hasInvalidBlocks,
+				false,
+				'There are invalid blocks when editing the homepage'
+			);
+		} );
+
 		step( 'Can delete the plan', async function() {
 			return await new DeletePlanFlow( driver ).deletePlan( 'premium' );
 		} );
@@ -1216,14 +1236,13 @@ describe( `[${ host }] Sign Up  (${ screenSize }, ${ locale })`, function() {
 		step( 'Can update the homepage', async function() {
 			const checklistPage = await ChecklistPage.Expect( this.driver );
 			await checklistPage.updateHomepage();
-
 			const gEditorComponent = await GutenbergEditorComponent.Expect( driver );
 
 			const errorShown = await gEditorComponent.errorDisplayed();
 			assert.strictEqual(
 				errorShown,
 				false,
-				'There is an error on when editing the homepage with Gutenberg'
+				'There is a block editor error when editing the homepage'
 			);
 
 			const hasInvalidBlocks = await gEditorComponent.hasInvalidBlocks();
