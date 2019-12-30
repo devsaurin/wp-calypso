@@ -1245,6 +1245,11 @@ describe( `[${ host }] Sign Up  (${ screenSize }, ${ locale })`, function() {
 				'There is a block editor error when editing the homepage'
 			);
 
+			// Jetpack blocks are broken in IE11. See https://github.com/Automattic/jetpack/issues/14273
+			if ( dataHelper.getTargetType() === 'IE11' ) {
+				return this.skip();
+			}
+
 			const hasInvalidBlocks = await gEditorComponent.hasInvalidBlocks();
 			return assert.strictEqual(
 				hasInvalidBlocks,
